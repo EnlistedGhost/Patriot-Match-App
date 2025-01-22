@@ -34,10 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $result->fetch_assoc();
         // Verify the password
         if (password_verify($password, $user['password'])) {
-            // Login successful
-            echo "Welcome, " . htmlspecialchars($user['username']) . "!";
-            // Redirect to a dashboard or another page
-            header("Location: dashboard.php");
+            // Start a session and store the user_id
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+
+            // Login successful, redirect to session.php (your dashboard page)
+            header("Location: session.php");
             exit();
         } else {
             // Invalid password
