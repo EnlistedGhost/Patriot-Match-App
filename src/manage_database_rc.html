@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Setup and Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        .container h2 {
+            margin: 0 0 20px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 14px;
+            color: green;
+        }
+        .error {
+            margin-top: 20px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Database Setup and Management</h2>
+
+        <!-- Button to run the database creation script -->
+        <button class="btn" id="create-db-btn">Create Database</button>
+
+        <!-- Button to view the current database contents -->
+        <button class="btn" id="view-db-btn">View Database</button>
+
+        <div class="status" id="status"></div>
+        <div class="error" id="error"></div>
+    </div>
+
+    <script>
+        // Handle the "Create Database" button click
+        document.getElementById('create-db-btn').addEventListener('click', function() {
+            document.getElementById('status').textContent = '';
+            document.getElementById('error').textContent = '';
+
+            // Fetch the PHP script to create the database
+            fetch('create_database_rc.php', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('status').textContent = 'Database and tables created successfully!';
+                    } else {
+                        document.getElementById('error').textContent = 'Error: ' + data.error;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('error').textContent = 'An error occurred: ' + error;
+                });
+        });
+
+        // Handle the "View Database" button click
+        document.getElementById('view-db-btn').addEventListener('click', function() {
+            document.getElementById('status').textContent = '';
+            document.getElementById('error').textContent = '';
+
+            // Fetch the PHP script to view the database contents
+            fetch('view_database_rc.php', { method: 'GET' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('status').textContent = 'Database contents loaded successfully.';
+                        console.log(data); // Show data in console for now
+                    } else {
+                        document.getElementById('error').textContent = 'Error: ' + data.error;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('error').textContent = 'An error occurred: ' + error;
+                });
+        });
+    </script>
+
+</body>
+</html>
