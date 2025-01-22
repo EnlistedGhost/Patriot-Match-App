@@ -42,6 +42,7 @@ git clone https://github.com/your-username/tinder-clone.git
 cd tinder-clone
 ```
 - Step 2.
+- 
 Upload Files to the Server: Copy the files to your web server's root directory (e.g., /var/www/html).
 
 ## Database Setup:
