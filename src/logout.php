@@ -7,6 +7,6 @@ session_unset();
 session_destroy();
 
 // Redirect to the login page
-header("Location: login.html?success=Logged+out+successfully");
+header("Location: login_rc.html?success=Logged+out+successfully");
 exit();
 ?>
