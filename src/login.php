@@ -1,40 +1,56 @@
 <?php
-header("Content-Type: application/json");
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+// Database connection details
 $servername = "localhost";
 $username = "datinguser";
 $password = "APPTEST2";
 $dbname = "patriot";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Create connection
+$conn = new mysqli($servername, $db_username, $db_password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-    die(json_encode(["error" => "Database connection failed: " . $conn->connect_error]));
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch input data
-$data = json_decode(file_get_contents("php://input"), true);
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if (isset($data['email'], $data['password'])) {
-    $email = $conn->real_escape_string($data['email']);
-    $password = $data['password'];
+    // Query the database for the username
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $sql = "SELECT id, password_hash FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password_hash'])) {
-            echo json_encode(["message" => "Login successful!", "user_id" => $row['id']]);
+    // Check if the user exists
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+            // Login successful
+            echo "Welcome, " . htmlspecialchars($user['username']) . "!";
+            // Redirect to a dashboard or another page
+            header("Location: dashboard.php");
+            exit();
         } else {
-            echo json_encode(["error" => "Invalid password"]);
+            // Invalid password
+            header("Location: login.html?error=Invalid+password");
+            exit();
         }
     } else {
-        echo json_encode(["error" => "User not found"]);
+        // Username not found
+        header("Location: login.html?error=User+not+found");
+        exit();
     }
-} else {
-    echo json_encode(["error" => "Invalid input data"]);
 }
 
+// Close connection
 $conn->close();
 ?>
