@@ -43,7 +43,7 @@ cd tinder-clone
 ```
 - Step 2.
 
-- Upload Files to the Server: Copy the files to your web server's root directory (e.g., /var/www/html).
+Upload Files to the Server: Copy the files to your web server's root directory (e.g., /var/www/html).
 
 ## Database Setup:
 - **Automatic Setup:** Visit setup.php in your browser (e.g., http://yourdomain.com/setup.php) to initialize the database.
