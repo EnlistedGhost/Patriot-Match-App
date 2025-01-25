@@ -50,7 +50,8 @@ cd Patriot-Match-App
 - Move Files to the Server's Web-Host directory: (e.g., /var/www/html).
 
 ### Step 2
-**Database Setup: (Choose option A or B)**
+**Database Setup: 
+(Choose option A or B)**
 - **Automatic Setup: (Option A)** Visit setup.php in your browser (e.g., http://yourdomain.com/setup.php) to initialize the database.
 - **Manual Setup: (Option B)** Run the commands in patriot.sql on your MySQL database.
 
