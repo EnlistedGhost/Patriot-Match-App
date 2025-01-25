@@ -68,8 +68,8 @@ cd Patriot-Match-App
 **Set Permissions:** 
 - Ensure proper file and directory permissions:
  - ```php
-sudo chmod -R 755 /path/to/project
-sudo chown -R www-data:www-data /path/to/project 
+	sudo chmod -R 755 /path/to/project
+	sudo chown -R www-data:www-data /path/to/project 
 	```
 
 ### Step 5
