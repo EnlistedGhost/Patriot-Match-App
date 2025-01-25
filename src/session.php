@@ -91,4 +91,9 @@ $conn->close();
             <p><strong>Bio:</strong> <?php echo htmlspecialchars($user['bio']); ?></p>
         </div>
         <form action="logout.php" method="POST">
-            <button class="btn" type="submi
+            <button class="btn" type="submit">Log Out</button>
+        </form>
+    </div>
+
+</body>
+</html>
