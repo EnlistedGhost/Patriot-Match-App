@@ -1,9 +1,10 @@
 # Patriot Match (Pure LAMP Stack)
-This project is a Tinder-like web application built using a **LAMP (Linux, Apache, MySQL, PHP)** stack. The goal is to create a responsive and functional matchmaking platform, with features like user registration, login, and account management.
+This project is a Tinder-like web application built using a **LAMP (Linux, Apache, MySQL, PHP)** stack. The goal is to create a responsive and functional matchmaking platform, with features like user registration, login, password recovery, and account management.
 
 ## 🚀 Features
 - **User Registration**: Users can create an account with a unique username, email, and password.
 - **User Login**: Secure authentication for registered users with password hashing.
+- **Password Recovery**: Users can recover their password via a secure email-based system that sends a unique reset link.
 - **User Session Management**: A session system that allows logged-in users to view their profile, log out, and navigate the platform.
 - **Database Management**: MySQL backend for storing user credentials, profiles, and match data.
 - **Responsive Frontend**: HTML-based UI for user interaction, styled with CSS.
@@ -22,8 +23,11 @@ This project is a Tinder-like web application built using a **LAMP (Linux, Apach
 ├── index.html              # Home page
 ├── login.html              # Login page
 ├── register.html           # Registration page
+├── forgot_password.html    # Forgot password page
 ├── login.php               # Backend script for user login
 ├── register.php            # Backend script for user registration
+├── forgot_password.php     # Backend script for password recovery
+├── reset_password.php      # Password reset page after token verification
 ├── session.php             # Page for logged-in users to view their profile and session info
 ├── logout.php              # Handles user logout and session destruction
 ├── setup.php               # First-run database setup script
@@ -44,7 +48,7 @@ This project is a Tinder-like web application built using a **LAMP (Linux, Apach
 **Clone the Repository:**
 - Run the following bash commands in Ubuntu console (copy paste)
 ```bash
-git clone https://github.com/EnlistedGhost/Patriot-Match-App.git
+git clone https://github.com/EnlistedGhost/Patriot-Match-App
 cd Patriot-Match-App
 ```
 - Move Files to the Server's Web-Host directory: (e.g., /var/www/html).
@@ -72,8 +76,8 @@ cp -r ~/Patriot-Match-App/. /var/www/html/
 **Set Permissions:** 
 - Ensure proper file and directory permissions:
  - ```php
-	sudo chmod -R 755 /path/to/project
-	sudo chown -R www-data:www-data /path/to/project 
+	sudo chmod -R 755 /var/www/html
+	sudo chown -R www-data:www-data /var/www/html 
 	```
 
 ### Step 5
@@ -84,8 +88,15 @@ cp -r ~/Patriot-Match-App/. /var/www/html/
 ## 🖥️ Usage
 - **Register:** Create a new account using the register.html page.
 - **Login:** Use the credentials to log in via the login.html page.
+- **Forgot Password:** If you’ve forgotten your password, use the forgot_password.html page to recover it.
 - **User Dashboard:** After logging in, view and manage your profile on the session.php page.
 - **Log Out:** Log out via the session.php page using the "Log Out" button.
+
+## 🔑 Password Recovery
+  **1.** **Forgot Password:** On the forgot_password.html page, enter your username to receive a password recovery email.
+  **1a.** The system will generate a unique recovery token and send it to your registered email.
+  **2.** **Reset Password:** Clicking the email contained link loads a unique/per-user reset_password.php page, where you can set a new password.
+  **2a.** The token expires after 1 hour to ensure security.
 
 ## 🤝 Contribution Guidelines
 - **Get a copy:** Fork the repository.
@@ -95,8 +106,10 @@ cp -r ~/Patriot-Match-App/. /var/www/html/
 - **Merge you contribitions:** Submit a pull request for review.
 
 ## 🐛 Known Issues
-- Current setup lacks advanced security (e.g., SQL injection prevention, CSRF tokens).
-- Password hashing is implemented, but other security layers need to be added.
+- The application’s basic functionality is working, but additional security features (e.g., multi-factor authentication, email verification) are not present.
+- Additionally, there are other potention enhancements in terms of user experience, such as:
+  - Adding validation for password strength during account creation or password reset.
+  - Extending the session management for automatic logout after inactivity.
 
 ## 📜 License
 - This project is licensed under the MIT License.
