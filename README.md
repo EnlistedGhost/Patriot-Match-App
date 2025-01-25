@@ -93,10 +93,10 @@ cp -r ~/Patriot-Match-App/. /var/www/html/
 - **Log Out:** Log out via the session.php page using the "Log Out" button.
 
 ## 🔑 Password Recovery
-  **1.** **Forgot Password:** On the forgot_password.html page, enter your username to receive a password recovery email.
-  **1a.** The system will generate a unique recovery token and send it to your registered email.
-  **2.** **Reset Password:** Clicking the email contained link loads a unique/per-user reset_password.php page, where you can set a new password.
-  **2a.** The token expires after 1 hour to ensure security.
+- **Forgot Password:** On the forgot_password.html page, enter your username to receive a password recovery email.
+  - The system will generate a unique recovery token and send it to your registered email.
+- **Reset Password:** Clicking the email contained link loads a unique/per-user reset_password.php page, where you can set a new password.
+  - The token expires after 1 hour to ensure security.
 
 ## 🤝 Contribution Guidelines
 - **Get a copy:** Fork the repository.
