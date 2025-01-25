@@ -117,6 +117,7 @@ cp -r ~/Patriot-Match-App/. /var/www/html/
 ## ❤️ Acknowledgments
 - Inspired by Tinder's simple and effective user interaction design.
 - Built with ❤️ and PHP!
+- Would not exist without [@Lana84c's](https://github.com/Lana84c) personal drive and contributions!
 
 ## 🔗 Contact
 - If you have questions or feedback, feel free to reach out:
