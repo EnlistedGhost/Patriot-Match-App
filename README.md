@@ -49,7 +49,7 @@ cd Patriot-Match-App
 ```
 - Move Files to the Server's Web-Host directory: (e.g., /var/www/html).
 ```bash
-cp -r ~/Patriot-Match-App /var/www/html
+cp -r ~/Patriot-Match-App/. /var/www/html/
 ```
 
 ### Step 2
